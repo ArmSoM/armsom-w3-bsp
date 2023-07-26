@@ -89,6 +89,7 @@ static wifi_device supported_wifi_devices[] = {
 	{"RTL8189FS",	"024c:f179"},
 	{"RTL8192DU",	"0bda:8194"},
 	{"RTL8812AU",	"0bda:8812"},
+	{"RTL8852BE",	"10ec:b852"},
 	{"AP6354",		"02d0:4354"},
 	{"AP6330",		"02d0:4330"},
 	{"AP6356S",		"02d0:4356"},
@@ -119,6 +120,7 @@ static wifi_device supported_wifi_devices[] = {
 #define RTL8812AU_DRIVER_MODULE_PATH "/system/lib/modules/RTL8812AU.ko"
 #define RTL8822BE_DRIVER_MODULE_PATH "/system/lib/modules/RTL8822BE.ko"
 #define RTL8822CE_DRIVER_MODULE_PATH "/system/lib/modules/RTL8822CE.ko"
+#define RTL8852BE_DRIVER_MODULE_PATH "/system/lib/modules/8852be.ko"
 #define BCM_DRIVER_MODULE_PATH       "/system/lib/modules/bcmdhd.ko"
 #define BCM_PCIE_DRIVER_MODULE_PATH   "/system/lib/modules/bcmdhd_pcie.ko"
 #define DRIVER_MODULE_PATH_UNKNOW    ""
@@ -136,6 +138,7 @@ static wifi_device supported_wifi_devices[] = {
 #define RTL8192DU_DRIVER_MODULE_NAME "8192du"
 #define RTL8812AU_DRIVER_MODULE_NAME "8812au"
 #define RTL8822CE_DRIVER_MODULE_NAME "8822ce"
+#define RTL8852BE_DRIVER_MODULE_NAME "8852be"
 #define BCM_DRIVER_MODULE_NAME       "bcmdhd"
 
 #define AP6330_BT_FIRMWARE_MODULE_PATH "/system/etc/firmware/rk903.hcd"
@@ -151,6 +154,7 @@ static wifi_device supported_wifi_devices[] = {
 #define AP6275_BT_FIRMWARE_MODULE_PATH "/system/etc/firmware/BCM4362A2.hcd"
 #define AP_BT_FIRMWARE_MODULE_PATH "/system/etc/firmware/"
 
+// 所有ko 的目录
 wifi_ko_file_name module_list[] =
 {
 	{"RTL8723BU", RTL8723BU_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG, ""},
@@ -167,6 +171,7 @@ wifi_ko_file_name module_list[] =
 	{"RTL8189FS", RTL8189FS_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG, ""},
 	{"RTL8822BE", RTL8822BE_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG, ""},
 	{"RTL8822CE", RTL8822CE_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG, ""},
+	{"RTL8852BE", RTL8852BE_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG, ""},
 	{"AP6335",          BCM_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG, AP6335_BT_FIRMWARE_MODULE_PATH},
 	{"AP6330",          BCM_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG, AP6330_BT_FIRMWARE_MODULE_PATH},
 	{"AP6354",          BCM_DRIVER_MODULE_PATH, UNKKOWN_DRIVER_MODULE_ARG, AP6354_BT_FIRMWARE_MODULE_PATH},
@@ -451,6 +456,11 @@ int wifibt_load_driver(void)
 	if (strstr(recoginze_wifi_chip , "AP")) {
 		if (access("/system/lib/modules/dhd_static_buf.ko", F_OK) == 0)
 			system("insmod /system/lib/modules/dhd_static_buf.ko");
+	}
+
+	if (strstr(recoginze_wifi_chip , "RTL8852BE")) {
+		if (access("/system/lib/modules/rtkm.ko", F_OK) == 0)
+			system("insmod /system/lib/modules/rtkm.ko");
 	}
 
 	usleep(500 * 1000);

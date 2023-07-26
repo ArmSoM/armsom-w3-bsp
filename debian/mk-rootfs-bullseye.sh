@@ -61,7 +61,8 @@ fi
 sudo mkdir -p $TARGET_ROOTFS_DIR/system/lib/modules/
 sudo mkdir -p $TARGET_ROOTFS_DIR/vendor/etc
 
-sudo find ../kernel/drivers/net/wireless/rockchip_wlan/*  -name "*.ko" | \
+# sudo find ../kernel/drivers/net/wireless/rockchip_wlan/*  -name "*.ko" | \
+sudo find ../external/rkwifibt/*  -name "*.ko" | \
     xargs -n1 -i sudo cp {} $TARGET_ROOTFS_DIR/system/lib/modules/
 
 echo -e "\033[36m Change root.....................\033[0m"
@@ -109,6 +110,10 @@ gstreamer1.0-plugins-base-apps qtmultimedia5-examples
 echo -e "\033[36m Install camera.................... \033[0m"
 \${APT_INSTALL} cheese v4l-utils
 \${APT_INSTALL} /packages/libv4l/*.deb
+
+#---------armsom-w3-test---------
+# echo -e "\033[36m Install armsom-w3-test.................... \033[0m"
+# \${APT_INSTALL} /packages/armsom-w3-test/*.deb
 
 #---------Xserver---------
 echo -e "\033[36m Install Xserver.................... \033[0m"

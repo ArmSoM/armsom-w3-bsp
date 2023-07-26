@@ -792,6 +792,7 @@ build_wifibt()
 		#reatek
 		cp -rf $RKWIFIBT/firmware/realtek/*/* $TARGET_ROOTFS_DIR/lib/firmware/
 		cp -rf $RKWIFIBT/firmware/realtek/*/* $TARGET_ROOTFS_DIR/lib/firmware/rtlbt/
+		cp $RKWIFIBT/drivers/rtl*/*.ko $TARGET_ROOTFS_DIR/system/lib/modules/
 		cp $RKWIFIBT/tools/rtk_hciattach/rtk_hciattach $TARGET_ROOTFS_DIR/usr/bin/
 		cp $RKWIFIBT/drivers/bluetooth_uart_driver/hci_uart.ko $TARGET_ROOTFS_DIR/usr/lib/modules/
 		if [ -n "$WIFI_USB" ]; then

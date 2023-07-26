@@ -35,7 +35,7 @@ init_rkwifibt() {
 	    rk_wifi_init /dev/ttyS8
             ;;
         rk3588|rk3588s)
-	    rk_wifi_init /dev/ttyS8
+	    rk_wifi_init /dev/ttyS6
             ;;
     esac
 }
