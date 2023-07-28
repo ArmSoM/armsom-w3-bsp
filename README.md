@@ -39,7 +39,7 @@ $ ./build.sh
 
 ## 2.2 Compile only the U-Boot
 - Enter the project root directory and execute the following command to compile:
-#./build.sh uboot
+$ ./build.sh uboot
 
 ## 2.3 Compile only the Kernel
 - Enter the project root directory and execute the following command to compile:
