@@ -1403,11 +1403,11 @@ build_save()
 	mkdir -p $STUB_PATH
 
 	#Generate patches
-	.repo/repo/repo forall -c \
-		"$TOP_DIR/device/rockchip/common/gen_patches_body.sh"
+	#.repo/repo/repo forall -c \
+	#	"$TOP_DIR/device/rockchip/common/gen_patches_body.sh"
 
 	#Copy stubs
-	yes | .repo/repo/repo manifest -r -o $STUB_PATH/manifest_${DATE}.xml
+	#yes | .repo/repo/repo manifest -r -o $STUB_PATH/manifest_${DATE}.xml
 	mkdir -p $STUB_PATCH_PATH/kernel
 	cp kernel/.config $STUB_PATCH_PATH/kernel
 	cp kernel/vmlinux $STUB_PATCH_PATH/kernel
